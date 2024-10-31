@@ -2,7 +2,7 @@ import { livros } from "./dadosUltimosLancamentos";
 import Titulo from "../Titulo"
 import CardRecomenda from "../CardRecomenda";
 import styled from "styled-components";
-import imagemLivroAngular from "../../imagens/livro2.png"
+import imagemLivroAngular from "../../images/livro2.png"
 
 const UltimosLancamentosContainer = styled.section`
     background-color: #EBECEE;
