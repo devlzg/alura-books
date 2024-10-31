@@ -2,6 +2,7 @@ import Input from "../Input"
 import styled from "styled-components"
 import { useEffect, useState } from "react"
 import { getLivros } from "../../services/livros"
+import { postFavoritos } from "../../services/favoritos"
 
 const PesquisaContainer = styled.section`
     color: #FFF;
@@ -47,8 +48,13 @@ export default function Pesquisa () {
     }, [])
 
     async function fetchLivros() {
-        const livrosDaAPI = getLivros()
+        const livrosDaAPI = await getLivros()
         setLivros(livrosDaAPI)
+    }
+
+    async function insertFavorito(id) {
+        await postFavoritos(id)
+        alert(`Livro inserido com sucesso! ID ${id}`)
     }
 
     return (
@@ -66,7 +72,7 @@ export default function Pesquisa () {
                 }}    
                 />
                 { livrosPesquisados.map( livro => (
-                    <Resultado>
+                    <Resultado onClick={() => insertFavorito(livro.id)}>
                         <img src={livro.src} alt="" />
                         <p>{livro.nome}</p>
                     </Resultado>
